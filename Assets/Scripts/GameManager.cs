@@ -4,7 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-	public static string NextScene = "";
+	private static string _nextScene = "";
+	public static string NextScene {
+		get { return _nextScene; }
+		set {
+			if ((_nextScene != "Clear")
+			    || (value == "")) {
+				_nextScene = value;
+			}
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +22,10 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// oキー
 		if (Input.GetKeyDown (KeyCode.O)) {
 			NextScene = "Game Over";
+		// cキー
 		} else if (Input.GetKeyDown (KeyCode.C)) {
 			NextScene = "Clear";
 		}
